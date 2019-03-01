@@ -84,13 +84,17 @@ void clona(Lista L, Lista *N){
 *N = NULL;
 Nodo *q;
 if (L != NULL){
-*N = L;
-COMPLETAR;
+*N = malloc(sizeof(Nodo));
+(*N)->val=L->val;
+q=*N;
+L=L->sig;
 while(L != NULL){
 q->sig = malloc(sizeof(Nodo));
-COMPLETAR;
+q=q->sig;
+q->val=L->val;
+L=L->sig;
 }
-q->sig = NULL; //¿Por qué?
+q->sig = NULL;
 }
 }
 
@@ -98,8 +102,11 @@ q->sig = NULL; //¿Por qué?
 void concat(Lista *L, Lista *K){
 if (*L == NULL) *L = *K;
 else {
-Nodo *p = COMPLETAR;
-COMPLETAR;
+Nodo *p = *L;
+while(p->sig!= NULL){
+p=p->sig;
+p->sig=*K;
+}
 }
 *K = NULL;
 }
@@ -138,13 +145,6 @@ free(p);
 else eliminaR(x, &((*L)->sig));
 } /// else skip
 }
-
-Extras:
-int sizeI(Lista L){
-int r = 0;
-COMPLETAR; es sólo una variante de la búsqueda no acotada!
-}
-
 
 
 ///programa de prueba
