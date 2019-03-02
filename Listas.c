@@ -146,6 +146,36 @@ else eliminaR(x, &((*L)->sig));
 } /// else skip
 }
 
+// Ejercicio de MERGE
+Lista merge(Lista L,Lista M){
+Nodo *p=malloc(sizeof(Nodo));
+Lista n= p;
+
+    while(L&&M){
+      if (L->val < M->val){
+        p->val=L->val;
+        L = L->sig;
+      } else {
+        p->val=M->val;
+        M=M->sig;
+        p->sig=malloc(sizeof(Nodo));
+        p=p->sig;
+      }
+
+        if (!L) L=M;
+        while(L){
+          p->val=L->val;
+          L=L->sig;
+          p->sig=malloc(sizeof(Nodo));
+          p=p->sig;
+        }
+      p->sig=NULL;
+      return n;
+    }
+
+
+}
+
 
 ///programa de prueba
 int main(){
